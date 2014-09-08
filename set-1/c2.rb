@@ -20,7 +20,8 @@ If your function works properly, then when you feed it the string:
 
 def fixed_xor(str1, str2)
 	out = str1.hex ^ str2.hex
-	out.to_s(16)
+	hex_str = out.to_s(16)
+	if hex_str.length > 1 then out.to_s(16) else out.to_s(16).rjust(2, '0') end
 end
 
 #puts fixed_xor('1c0111001f010100061a024b53535009181c', '686974207468652062756c6c277320657965')
