@@ -26,7 +26,7 @@ def frequency_score(str)
 	hsh = {"e" => 12.02, "t" => 9.10, "a" => 8.12, "o" => 7.68, "i" => 7.31, "n" => 6.95, "s" => 6.28, 
 	        "r" => 6.02, "h" =>5.92, "d" => 4.32, "l" => 3.98, "u" => 2.88}
 	hsh.default = 0.0
-	if (str.split(' ').join.length != str.length) then str.split(//).map { |a| score += hsh[a]} end
+	if (str.split(' ').join.length != str.length) then str.split(//).map { |a| score += hsh[a]} else score = 0.0 end
 	score
 end
 
@@ -45,10 +45,12 @@ def xor_parse(str)
 		decoded[output_score] = output_string
 		if output_score > max then max = output_score end
 	end
-decoded[max]	
+decoded[max]
 #puts decoded[max]
 end
 
 #str = '1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'
 #xor_parse(str)
 
+#The final result should be 'Cooking MC's like a pound of bacon'
+#(Ice, Ice Baby!!)
