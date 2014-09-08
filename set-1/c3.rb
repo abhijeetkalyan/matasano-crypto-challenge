@@ -30,20 +30,25 @@ def frequency_score(str)
 	score
 end
 
-str = '1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'
-max = 0.0
-decoded = {}
+def xor_parse(str)
+	max = 0.0
+	decoded = {}
 
-#Look at all possible chars from value 0-255 and XOR them against the encoded string.
-#This returns the original string, which is then decoded to English plaintext via pack
-#and passed to the frequency scorer
+	#Look at all possible chars from value 0-255 and XOR them against the encoded string.
+	#This returns the original string, which is then decoded to English plaintext via pack
+	#and passed to the frequency scorer
 
-(0..255).each do |i|
-	out = str.scan(/../).map{ |a| fixed_xor(a, i.to_s(16))}.join
-	output_string = [out].pack('H*')
-	output_score = frequency_score(output_string)
-	decoded[output_score] = output_string
-	if output_score > max then max = output_score end
+	(0..255).each do |i|
+		out = str.scan(/../).map{ |a| fixed_xor(a, i.to_s(16))}.join
+		output_string = [out].pack('H*')
+		output_score = frequency_score(output_string)
+		decoded[output_score] = output_string
+		if output_score > max then max = output_score end
+	end
+decoded[max]	
+#puts decoded[max]
 end
 
-puts decoded[max]
+#str = '1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'
+#xor_parse(str)
+
